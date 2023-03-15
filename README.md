@@ -1,6 +1,6 @@
 ![](https://jitpack.io/v/expresspay/expresspay-android-sdk.svg) | [View SDK Wiki](https://github.com/ExpresspaySa/expresspay-android-sdk/wiki) | [Report new issue](https://github.com/ExpresspaySa/expresspay-android-sdk/issues/new)
 
-# Expresspay Android SDK
+# Expresspay Flutter SDK Samples
 
 Expresspay is a white-label payment software provider. Thanks to our 15+ years of experience in the payment industry, we’ve developed a state-of-the-art white-label payment system that ensures smooth and uninterrupted payment flow for merchants across industries.
 
@@ -10,9 +10,9 @@ Expresspay is a white-label payment software provider. Thanks to our 15+ years o
   </a>
 </p>
 
-Expresspay Android SDK was developed and designed with one purpose: to help the Android developers easily integrate the Expresspay API Payment Platform for a specific merchant. 
+Expresspay Flutter SDK was developed and designed with one purpose: to help the Flutter developers easily integrate the Expresspay API Payment Platform for a specific merchant. 
 
-The main aspects of the Expresspay Android SDK:
+The main aspects of the Expresspay AndFlutterroid SDK:
 
 - [Kotlin](https://developer.android.com/kotlin) is the main language
 - [Retrofit](http://square.github.io/retrofit/) is the API machine 
