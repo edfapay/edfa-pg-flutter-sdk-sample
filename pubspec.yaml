@@ -36,7 +36,8 @@ dependencies:
   intl: ^0.17.0
 
   expresspay_sdk: any
-#    path: ../expresspay_sdk
+#  expresspay_sdk:
+#    path: ../expresspay-flutter-sdk
 
 
   # The following adds the Cupertino Icons font to your application.
