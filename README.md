@@ -47,7 +47,7 @@ dependencies:
   expresspay_sdk: any
 ```
 
-Latest version is: ![0.0.1](https://pub.dev/packages/expresspay_sdk) 
+Latest version is: [0.0.1](https://pub.dev/packages/expresspay_sdk) 
 
 ## Quick Payment Implementation
 [**Card Payment**](https://github.com/ExpresspaySa/expresspay-android-sdk/wiki/Express-Quick-Card-Payment)
