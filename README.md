@@ -1,6 +1,8 @@
-![](https://jitpack.io/v/expresspay/expresspay-android-sdk.svg) | [View SDK Wiki](https://github.com/ExpresspaySa/expresspay-android-sdk/wiki) | [Report new issue](https://github.com/ExpresspaySa/expresspay-android-sdk/issues/new)
+# expresspay_sdk
 
-# Expresspay Flutter SDK Samples
+![](https://jitpack.io/v/expresspay/expresspay-android-sdk.svg) | [View SDK Wiki](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki) | [Report new issue](https://github.com/a2zZuhaib/expresspay-flutter-sdk/issues/new)
+
+# Expresspay Flutter SDK & Sample
 
 Expresspay is a white-label payment software provider. Thanks to our 15+ years of experience in the payment industry, we’ve developed a state-of-the-art white-label payment system that ensures smooth and uninterrupted payment flow for merchants across industries.
 
@@ -10,14 +12,14 @@ Expresspay is a white-label payment software provider. Thanks to our 15+ years o
   </a>
 </p>
 
-Expresspay Flutter SDK was developed and designed with one purpose: to help the Flutter developers easily integrate the Expresspay API Payment Platform for a specific merchant. 
+Expresspay Flutter SDK was developed and designed with one purpose: to help the Flutter developers easily integrate the Expresspay API Payment Platform for a specific merchant.
 
 
 To properly set up the SDK, read [Wiki](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki) first.
 
 ## Setup And Installation
-This Flutter plugin is based on iOS and Android native libraries. 
-You need to add the `jitpack` repository support and `credentials` to the gradle to access the secured Android library. `Follow Below` 
+This Flutter plugin is based on iOS and Android native libraries.
+You need to add the `jitpack` repository support and `credentials` to the gradle to access the secured Android library. `Follow Below`
 
 **Setup Android**
 Add to the root build.gradle in Android Project at Path:(${ProjectRoot}/android/build.gradle):
@@ -36,7 +38,7 @@ allprojects {
 ```
 
 **Setup iOS**
-iOS does not required any setup just install flutter plugin where the `iOS framewework` is embeded within the plugin in iOS plaform directory.
+iOS does not required any setup just install flutter plugin where the `iOS framewework` is embedded within the plugin in iOS plaform directory.
 
 **Intalling Flutter Plugin**
 In the `dependencies:` section of your `pubspec.yaml`, add the following lines:
@@ -47,14 +49,12 @@ dependencies:
   expresspay_sdk: any
 ```
 
-Latest version is: [0.0.1](https://pub.dev/packages/expresspay_sdk) 
-
 ## Quick Payment Implementation
-[**Card Payment for iOS/Android**](https://github.com/ExpresspaySa/expresspay-android-sdk/wiki/Express-Quick-Card-Payment)
+[**Card Payment for iOS/Android**](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki/Express-Quick-Card-Payment)
 Start the card payment with one click, easy and short line of codes. It will help the developer to easily implement the payment using card in thier application. click the [link](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki/Express-Quick-Card-Payment) for easy steps to start payments.
 
 
-[**Apple Pay Payment for iOS**](https://github.com/ExpresspaySa/expresspay-ios-sdk-framework/wiki/Express-ApplePay-Payment)
+[**Apple Pay Payment for iOS**](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki/Express-ApplePay-Payment)
 Start the Apple Pay payment with one click, easy and short line of codes. It will help the developer to easily implement the payment using ApplePay in thier application. the developer just need to configure and enable the Apple Pay in thier AppleDeveloper Account and call the simple function. click the [link](https://github.com/ExpresspaySa/expresspay-ios-sdk-framework/wiki/Express-ApplePay-Payment) for easy steps to start payments with ApplePay.
 
 
@@ -75,6 +75,8 @@ MIT License. See the [LICENSE](https://github.com/a2zZuhaib/expresspay-flutter-s
 Website: https://expresspay.sa  
 Phone: [+966 920033633](tel:+966920033633)  
 Email: [support@expresspay.sa](mailto:support@expresspay.sa)  
-Address: Expresspay, Olaya Street, Riyadh, Saudi Arabia 
+Address: Expresspay, Olaya Street, Riyadh, Saudi Arabia
 
 © 2022 - 2023 Expresspay. All rights reserved.
+
+
