@@ -50,8 +50,12 @@ dependencies:
 Latest version is: [0.0.1](https://pub.dev/packages/expresspay_sdk) 
 
 ## Quick Payment Implementation
-[**Card Payment**](https://github.com/ExpresspaySa/expresspay-android-sdk/wiki/Express-Quick-Card-Payment)
+[**Card Payment for iOS/Android**](https://github.com/ExpresspaySa/expresspay-android-sdk/wiki/Express-Quick-Card-Payment)
 Start the card payment with one click, easy and short line of codes. It will help the developer to easily implement the payment using card in thier application. click the [link](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki/Express-Quick-Card-Payment) for easy steps to start payments.
+
+
+[**Apple Pay Payment for iOS**](https://github.com/ExpresspaySa/expresspay-ios-sdk-framework/wiki/Express-ApplePay-Payment)
+Start the Apple Pay payment with one click, easy and short line of codes. It will help the developer to easily implement the payment using ApplePay in thier application. click the [link](https://github.com/ExpresspaySa/expresspay-ios-sdk-framework/wiki/Express-ApplePay-Payment) for easy steps to start payments with ApplePay.
 
 
 ## Getting help
