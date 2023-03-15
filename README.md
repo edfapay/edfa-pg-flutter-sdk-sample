@@ -14,9 +14,8 @@ Expresspay Flutter SDK was developed and designed with one purpose: to help the 
 
 
 To properly set up the SDK, read [Wiki](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki) first.
-To get used to the SDK, download a [sample app](https://github.com/a2zZuhaib/expresspay-flutter-sdk/tree/master/sample).
 
-## Setup
+## Setup Android
 
 Add to the root build.gradle in Android Project at Path:(${ProjectRoot}/android/build.gradle):
 
@@ -33,7 +32,8 @@ allprojects {
 }
 ```
 
-Add below to the pubspec.yaml at Path:(${ProjectRoot}/pubspec.yaml):
+## Setup Flutter
+In the `dependencies:` section of your `pubspec.yaml`, add the following lines:
 
 ```pubspec.yaml
 dependencies:
@@ -42,8 +42,6 @@ dependencies:
 ```
 
 Latest version is: ![](https://github.com/a2zZuhaib/expresspay-flutter-sdk.svg) 
-
-Also, it is possible to download the latest artifact from the [releases page](https://github.com/a2zZuhaib/expresspay-flutter-sdk/releases).
 
 ## Quick Payment Implementation
 [**Card Payment**](https://github.com/ExpresspaySa/expresspay-android-sdk/wiki/Express-Quick-Card-Payment)
