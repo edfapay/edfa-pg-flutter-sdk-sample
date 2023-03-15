@@ -8,7 +8,7 @@ Expresspay is a white-label payment software provider. Thanks to our 15+ years o
 
 <p align="center">
   <a href="https://expresspay.sa">
-      <img src="/media/header.jpg" alt="Expresspay" width="400px"/>
+      <img src="/media/header.png" alt="Expresspay" width="400px"/>
   </a>
 </p>
 
@@ -70,7 +70,7 @@ MIT License. See the [LICENSE](https://github.com/a2zZuhaib/expresspay-flutter-s
 
 ## Contacts
 
-![](/media/footer.jpg)
+![](/media/footer.png)
 
 Website: https://expresspay.sa  
 Phone: [+966 920033633](tel:+966920033633)  
