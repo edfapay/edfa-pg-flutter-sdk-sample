@@ -15,8 +15,11 @@ Expresspay Flutter SDK was developed and designed with one purpose: to help the 
 
 To properly set up the SDK, read [Wiki](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki) first.
 
-## Setup Android
+## Setup And Installation
+This Flutter plugin is based on iOS and Android native libraries. 
+You need to add the `jitpack` repository support and `credentials` to the gradle to access the secured Android library. `Follow Below` 
 
+**Setup Android**
 Add to the root build.gradle in Android Project at Path:(${ProjectRoot}/android/build.gradle):
 
 ```groovy
@@ -32,7 +35,10 @@ allprojects {
 }
 ```
 
-## Setup Flutter
+**Setup iOS**
+iOS does not required any setup just install flutter plugin where the `iOS framewework` is embeded within the plugin in iOS plaform directory.
+
+**Intalling Flutter Plugin**
 In the `dependencies:` section of your `pubspec.yaml`, add the following lines:
 
 ```pubspec.yaml
@@ -41,7 +47,7 @@ dependencies:
   expresspay_sdk: any
 ```
 
-Latest version is: ![](https://github.com/a2zZuhaib/expresspay-flutter-sdk.svg) 
+Latest version is: ![0.0.1](https://pub.dev/packages/expresspay_sdk) 
 
 ## Quick Payment Implementation
 [**Card Payment**](https://github.com/ExpresspaySa/expresspay-android-sdk/wiki/Express-Quick-Card-Payment)
