@@ -12,38 +12,33 @@ Expresspay is a white-label payment software provider. Thanks to our 15+ years o
 
 Expresspay Flutter SDK was developed and designed with one purpose: to help the Flutter developers easily integrate the Expresspay API Payment Platform for a specific merchant. 
 
-The main aspects of the Expresspay AndFlutterroid SDK:
-
-- [Kotlin](https://developer.android.com/kotlin) is the main language
-- [Retrofit](http://square.github.io/retrofit/) is the API machine 
-- [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html) code coverage
-- API debug [logging](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor)
-- Minimum SDK 16+
-- Sample Application
 
 To properly set up the SDK, read [Wiki](https://github.com/a2zZuhaib/expresspay-flutter-sdk/wiki) first.
 To get used to the SDK, download a [sample app](https://github.com/a2zZuhaib/expresspay-flutter-sdk/tree/master/sample).
 
 ## Setup
 
-Add to the root build.gradle:
+Add to the root build.gradle in Android Project at Path:(${ProjectRoot}/android/build.gradle):
 
 ```groovy
 allprojects {
     repositories {
         ...
         jcenter()
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://jitpack.io'
+            credentials { username 'jp_t35u3134mhdka9fc1vatvmcu6i' }
+        }
     }
 }
 ```
 
-Add to the package build.gradle:
+Add below to the pubspec.yaml at Path:(${ProjectRoot}/pubspec.yaml):
 
-```groovy
-dependencies {
-    implementation 'com.github.ExpresspaySa:expresspay-android-sdk:{latest-version}'
-}
+```pubspec.yaml
+dependencies:
+  intl: ^0.17.0
+  expresspay_sdk: any
 ```
 
 Latest version is: ![](https://github.com/a2zZuhaib/expresspay-flutter-sdk.svg) 
