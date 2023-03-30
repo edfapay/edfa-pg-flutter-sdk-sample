@@ -34,10 +34,11 @@ dependencies:
 
   faker: ^2.1.0
   intl: ^0.17.0
+  shared_preferences: ^2.0.20
 
-  expresspay_sdk: any
-#  expresspay_sdk:
-#    path: ../expresspay-flutter-sdk
+#  expresspay_sdk: any
+  expresspay_sdk:
+    path: ../expresspay-flutter-sdk
 
 
   # The following adds the Cupertino Icons font to your application.

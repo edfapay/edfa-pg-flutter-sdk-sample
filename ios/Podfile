@@ -32,7 +32,7 @@ target 'Runner' do
   use_modular_headers!
 
 ##  For Development Purpose
-#   pod 'ExpressPaySDK', :path => '/Volumes/EdfaPay/Codes/Github/ExpressPay/iOS/expresspay-ios-sdk-source/ExpressPaySDK'
+   pod 'ExpressPaySDK', :path => '/Volumes/EdfaPay/Codes/Github/ExpressPay/iOS/expresspay-ios-sdk-source/ExpressPaySDK'
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end

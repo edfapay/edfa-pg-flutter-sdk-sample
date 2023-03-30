@@ -37,7 +37,7 @@ class _RecurringOptionState extends State<RecurringOption> {
               }),
             ],
           ),
-          textField(widget.textEditingController)
+          textField(widget.textEditingController, hint: "Channel ID")
         ],
       ),
     );

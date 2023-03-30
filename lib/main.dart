@@ -3,9 +3,15 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:expresspay_sample/Credentials.dart';
-import 'package:expresspay_sample/sale_page.dart';
+import 'package:expresspay_sample/actions/capture_page.dart';
+import 'package:expresspay_sample/actions/get_transaction_detail_page.dart';
+import 'package:expresspay_sample/actions/sale_page.dart';
+import 'package:expresspay_sample/transaction-storage.dart';
 import 'package:expresspay_sdk/expresspay_sdk.dart';
 import 'package:flutter/material.dart';
+import 'actions/credit_void_page.dart';
+import 'actions/get_transaction_status_page.dart';
+import 'actions/recurring_sale_page.dart';
 import 'global.dart';
 
 void main() {
@@ -45,7 +51,13 @@ class ActionsPage extends StatelessWidget{
     this.context = context;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("ExpressPaySDKSample")),
+      appBar: AppBar(
+        centerTitle: false,
+        title: const Text("ExpressPaySDKSample"),
+        actions: const [
+          TextButton(onPressed: Transaction.clear, child: Text("Clear", style: TextStyle(color: Colors.white)))
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -72,23 +84,33 @@ class ActionsPage extends StatelessWidget{
   }
 
   recurringSale(){
-    alert(context, "Under Development");
+    Transaction.getRecurringSale().then((value){
+      Navigator.of(context).push(pageRoute(RecurringSalePage(value)));
+    });
   }
 
   capture(){
-    alert(context, "Under Development");
+    Transaction.getAll().then((value){
+      Navigator.of(context).push(pageRoute(CapturePage(value)));
+    });
   }
 
   creditVoid(){
-    alert(context, "Under Development");
+    Transaction.getAll().then((value){
+      Navigator.of(context).push(pageRoute(CreditVoidPage(value)));
+    });
   }
 
   transDetail(){
-    alert(context, "Under Development");
+    Transaction.getAll().then((value){
+      Navigator.of(context).push(pageRoute(TransactionDetailPage(value)));
+    });
   }
 
   transSatus(){
-    alert(context, "Under Development");
+    Transaction.getAll().then((value){
+      Navigator.of(context).push(pageRoute(TransactionStatusPage(value)));
+    });
   }
 
   saleWithCard(){

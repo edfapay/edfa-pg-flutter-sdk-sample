@@ -41,18 +41,15 @@ inputDecoration(String hint) => InputDecoration(
     hintText: hint,
 );
 
-Widget textField(TextEditingController controller){
-  final hint = controller.text;
-  controller.text = "";
-
+Widget textField(TextEditingController controller, {String? hint}){
   return Padding(
-    padding: const EdgeInsets.all(5),
+    padding: const EdgeInsets.symmetric(vertical: 5),
     child: SizedBox(
       height: 40,
       child: TextField(
         style: const TextStyle(fontSize: 13),
           controller: controller,
-          decoration: inputDecoration(hint)
+          decoration: inputDecoration(hint ?? "")
       ),
     ),
   );
@@ -71,7 +68,25 @@ alert(BuildContext context ,String message){
 }
 
 String prettyPrint(Map json){
-  JsonEncoder encoder = JsonEncoder.withIndent('  ');
+  JsonEncoder encoder = const JsonEncoder.withIndent('  ');
   final String jsonString = encoder.convert(json);
   return jsonString;
+}
+
+extension xLoading on Widget{
+
+  loading(bool loading){
+    return Stack(
+      children: [
+        this,
+        if(loading)
+          const Positioned(
+            top: 0, bottom: 0, right: 0, left: 0,
+              child: Center(
+                  child: CircularProgressIndicator()
+              )
+          )
+      ],
+    );
+  }
 }
