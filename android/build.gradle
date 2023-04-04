@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:7.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -17,7 +17,7 @@ allprojects {
         mavenCentral()
         maven {
             url 'https://jitpack.io'
-            credentials { username 'jp_t35u3134mhdka9fc1vatvmcu6i' }
+            credentials { username 'jp_cppv4mkessjq12i4kqihrnjqvo' }
         }
     }
 }
