@@ -3,4 +3,4 @@ Credentials.dart
 .flutter-plugins-dependencies
 .dart_tool/package_config_subset
 .dart_tool/version
-/.dart_tool/
+.dart_tool
