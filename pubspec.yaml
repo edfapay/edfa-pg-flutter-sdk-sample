@@ -16,7 +16,19 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.0+3
+
+# AppIds
+#--------------------------------------------------------------------
+# iOS_flutter : 1:132806585582:ios:8ae354210166a3247dd7ff
+# And_flutter : 1:132806585582:android:ca0ee221cb4522f87dd7ff
+# iOS_native  : 1:132806585582:ios:f4c2e39235c8a0787dd7ff
+#--------------------------------------------------------------------
+# flutter build apk --release && sleep 2 && firebase appdistribution:distribute ./build/app/outputs/flutter-apk/app-release.apk --app 1:132806585582:android:ca0ee221cb4522f87dd7ff --release-notes "" --groups "internal"
+# flutter build ipa --release --export-options-plist=ExportOptions.plist && sleep 2  && firebase appdistribution:distribute ./build/ios/ipa/expresspay_sample.ipa --app 1:132806585582:ios:8ae354210166a3247dd7ff --release-notes "" --groups "internal"
+# Upload native version from location: firebase appdistribution:distribute Sample.ipa --app 1:132806585582:ios:f4c2e39235c8a0787dd7ff --release-notes "" --groups "internal"
+
+
 
 environment:
   sdk: '>=2.19.2 <3.0.0'
