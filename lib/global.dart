@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:ui';
-import 'package:expresspay_sdk/expresspay_sdk.dart';
+import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:flutter/material.dart';
 
-List<ExpresspayCard> testingCards = ExpresspayTestCards().all();
+List<EdfaPgCard> testingCards = EdfaPgTestCards().all();
 
 const primaryColor =  Color(0xff1d6cf3);
 const primaryTextColor =  Colors.black;

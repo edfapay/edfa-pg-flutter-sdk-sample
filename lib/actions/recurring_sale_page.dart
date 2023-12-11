@@ -1,12 +1,9 @@
-import 'dart:convert';
 import 'dart:math';
 
-import 'package:expresspay_sample/components/card_types.dart';
-import 'package:expresspay_sample/components/recurring_option.dart';
-import 'package:expresspay_sample/global.dart';
-import 'package:expresspay_sample/inheritable/transaction_state.dart';
-import 'package:expresspay_sample/transaction-storage.dart';
-import 'package:expresspay_sdk/expresspay_sdk.dart';
+import 'package:edfapg_sample/global.dart';
+import 'package:edfapg_sample/inheritable/transaction_state.dart';
+import 'package:edfapg_sample/transaction-storage.dart';
+import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -188,47 +185,47 @@ class RecurringSalePageState extends TransactionState<RecurringSalePage> with Lo
     setState(startLoading);
     response.text = "";
 
-    final order = ExpresspayOrder(
+    final order = EdfaPgOrder(
         id: orderId.text,
         amount: double.parse(amount.text),
         description: desc.text,
     );
 
-    final recurringOptions = ExpresspayRecurringOptions(
+    final recurringOptions = EdfaPgRecurringOptions(
         firstTransactionId: selectedTxn?.txnId ?? "",
         token:  selectedTxn?.recurringToken ?? ""
     );
 
     final txn = selectedTxn;
     txn?.isAuth = isAuth;
-    ExpresspaySdk.instance.ADAPTER.RECURRING_SALE.execute(
+    EdfaPgSdk.instance.ADAPTER.RECURRING_SALE.execute(
         cardNumber: selectedTxn?.cardNumber ?? "",
         isAuth: isAuth,
         order: order,
         payerEmail: selectedTxn?.payerEmail ?? "",
         recurringOptions: recurringOptions,
         onResponse: RecurringSaleResponseCallback(
-            success: (ExpresspaySaleSuccess result) {
+            success: (EdfaPgSaleSuccess result) {
               debugPrint(result.toJson().toString());
               txn?.fill(result).save();
             },
-            decline: (ExpresspaySaleDecline result) {
+            decline: (EdfaPgSaleDecline result) {
               debugPrint(result.toJson().toString());
               txn?.fill(result).save();
             },
-            recurring: (ExpresspaySaleRecurring result) {
+            recurring: (EdfaPgSaleRecurring result) {
               debugPrint(result.toJson().toString());
               txn?.fill(result).save();
             },
-            redirect: (ExpresspaySaleRedirect result) {
+            redirect: (EdfaPgSaleRedirect result) {
               debugPrint(result.toJson().toString());
               txn?.fill(result).save();
             },
-            secure3d: (ExpresspaySale3DS result) {
+            secure3d: (EdfaPgSale3DS result) {
               debugPrint(result.toJson().toString());
               txn?.fill(result).save();
             },
-            error: (ExpresspayError result) {
+            error: (EdfaPgError result) {
               debugPrint(result.toJson().toString());
             }
         ),

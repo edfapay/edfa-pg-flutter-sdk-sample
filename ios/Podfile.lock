@@ -1,36 +1,36 @@
 PODS:
-  - expresspay_sdk (0.0.1):
-    - ExpressPaySDK
+  - edfapg_sdk (0.0.1):
+    - EdfaPgSdk (~> 0.0.2)
     - Flutter
-  - ExpressPaySDK (1.1.1)
+  - EdfaPgSdk (0.0.2)
   - Flutter (1.0.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
 
 DEPENDENCIES:
-  - expresspay_sdk (from `.symlinks/plugins/expresspay_sdk/ios`)
+  - edfapg_sdk (from `.symlinks/plugins/edfapg_sdk/ios`)
   - Flutter (from `Flutter`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
 
 SPEC REPOS:
   trunk:
-    - ExpressPaySDK
+    - EdfaPgSdk
 
 EXTERNAL SOURCES:
-  expresspay_sdk:
-    :path: ".symlinks/plugins/expresspay_sdk/ios"
+  edfapg_sdk:
+    :path: ".symlinks/plugins/edfapg_sdk/ios"
   Flutter:
     :path: Flutter
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/ios"
 
 SPEC CHECKSUMS:
-  expresspay_sdk: 8c0a8bbf8ef94cbe2c3b1e4db600a61d67ee2684
-  ExpressPaySDK: e032f322a927b94ae64f1993ae669fd1df13ef13
+  edfapg_sdk: c6598bfb2c55bd087bf75b3b015a9a8cb6aa2bb4
+  EdfaPgSdk: 21bed0152aa51dc46c2413fb42b23650587c5f12
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
 
 PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0

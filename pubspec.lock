@@ -57,14 +57,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  expresspay_sdk:
+  edfapg_sdk:
     dependency: "direct main"
     description:
-      name: expresspay_sdk
-      sha256: "5c2eaa615d5bbe78d90dbdf3e008ad391a4745c784fed0524c9db7f73dad02b7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
+      path: "../edfapay-pg-flutter-sdk.git"
+      relative: true
+    source: path
+    version: "2.0.2"
   fake_async:
     dependency: transitive
     description:

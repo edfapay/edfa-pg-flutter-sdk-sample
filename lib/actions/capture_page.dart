@@ -1,14 +1,9 @@
-import 'dart:convert';
-import 'dart:math';
 
-import 'package:expresspay_sample/components/card_types.dart';
-import 'package:expresspay_sample/components/recurring_option.dart';
-import 'package:expresspay_sample/global.dart';
-import 'package:expresspay_sample/inheritable/loading_flag.dart';
-import 'package:expresspay_sample/inheritable/transaction_state.dart';
-import 'package:expresspay_sample/transaction-storage.dart';
-import 'package:expresspay_sdk/expresspay_sdk.dart';
-import 'package:faker/faker.dart';
+import 'package:edfapg_sdk/edfapg_sdk.dart';
+import 'package:edfapg_sample/global.dart';
+import 'package:edfapg_sample/inheritable/loading_flag.dart';
+import 'package:edfapg_sample/inheritable/transaction_state.dart';
+import 'package:edfapg_sample/transaction-storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -103,21 +98,21 @@ class CapturePageState extends TransactionState<CapturePage> with LoadingFlag{
     final txn = selectedTxn;
     double? amount_ = double.tryParse(amount.text) ?? 0.0;
     amount_ = amount_ > 0.0 ? amount_ : null;
-    ExpresspaySdk.instance.ADAPTER.CAPTURE.execute(
+    EdfaPgSdk.instance.ADAPTER.CAPTURE.execute(
         amount: amount_,
         transactionId: selectedTxn?.txnId ?? "",
         cardNumber: selectedTxn?.cardNumber ?? "",
         payerEmail: selectedTxn?.payerEmail ?? "",
         onResponse: CaptureResponseCallback(
-            success: (ExpresspayCaptureSuccess result){
+            success: (EdfaPgCaptureSuccess result){
               debugPrint(result.toJson().toString());
               txn?.fill(result).save();
             },
-            decline: (ExpresspayCaptureDecline result){
+            decline: (EdfaPgCaptureDecline result){
               debugPrint(result.toJson().toString());
               txn?.fill(result).save();
             },
-            error: (ExpresspayError result){
+            error: (EdfaPgError result){
               debugPrint(result.toJson().toString());
             }
         ),

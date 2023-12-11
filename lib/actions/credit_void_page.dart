@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:expresspay_sample/components/card_types.dart';
-import 'package:expresspay_sample/components/recurring_option.dart';
-import 'package:expresspay_sample/global.dart';
-import 'package:expresspay_sample/inheritable/transaction_state.dart';
-import 'package:expresspay_sample/transaction-storage.dart';
-import 'package:expresspay_sdk/expresspay_sdk.dart';
+import 'package:edfapg_sample/components/card_types.dart';
+import 'package:edfapg_sample/components/recurring_option.dart';
+import 'package:edfapg_sample/global.dart';
+import 'package:edfapg_sample/inheritable/transaction_state.dart';
+import 'package:edfapg_sample/transaction-storage.dart';
+import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -164,17 +164,17 @@ class CreditVoidPageState extends TransactionState<CreditVoidPage> with LoadingF
     final txn = selectedTxn;
     double? amount_ = double.tryParse(amount.text) ?? 0.0;
     amount_ = amount_ > 0.0 ? amount_ : null;
-    ExpresspaySdk.instance.ADAPTER.CREDIT_VOID.execute(
+    EdfaPgSdk.instance.ADAPTER.CREDIT_VOID.execute(
         amount: amount_,
         transactionId: selectedTxn?.txnId ?? "",
         cardNumber: selectedTxn?.cardNumber ?? "",
         payerEmail: selectedTxn?.payerEmail ?? "",
         onResponse: CreditVoidResponseCallback(
-            success: (ExpresspayCreditVoidSuccess result){
+            success: (EdfaPgCreditVoidSuccess result){
               debugPrint(result.toJson().toString());
 
             },
-            error: (ExpresspayError result){
+            error: (EdfaPgError result){
               debugPrint(result.toJson().toString());
 
             }

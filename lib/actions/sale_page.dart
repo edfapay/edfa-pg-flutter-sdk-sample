@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:math';
 
 import '../inheritable/loading_flag.dart';
-import 'package:expresspay_sample/components/card_types.dart';
-import 'package:expresspay_sample/components/recurring_option.dart';
-import 'package:expresspay_sample/global.dart';
-import 'package:expresspay_sample/transaction-storage.dart';
-import 'package:expresspay_sdk/expresspay_sdk.dart';
+import 'package:edfapg_sample/components/card_types.dart';
+import 'package:edfapg_sample/components/recurring_option.dart';
+import 'package:edfapg_sample/global.dart';
+import 'package:edfapg_sample/transaction-storage.dart';
+import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +48,7 @@ class SalePageState extends State<SalePage> with LoadingFlag{
 
   TextEditingController response = TextEditingController(text: "");
 
-  ExpresspayCard? selectedCard;
+  EdfaPgCard? selectedCard;
 
 
   @override
@@ -194,21 +194,21 @@ class SalePageState extends State<SalePage> with LoadingFlag{
     setState(startLoading);
     response.text = "";
 
-    final order = ExpresspaySaleOrder(
+    final order = EdfaPgSaleOrder(
         id: id.text,
         amount: double.parse(amount.text),
         description: desc.text,
         currency: currency.text
     );
 
-    final card = ExpresspayCard(
+    final card = EdfaPgCard(
         number: selectedCard!.number,
         expireMonth: selectedCard!.expireMonth,
         expireYear: selectedCard!.expireYear,
         cvv: selectedCard!.cvv
     );
 
-    final payer = ExpresspayPayer(
+    final payer = EdfaPgPayer(
         firstName: firstName.text,
         lastName: lastName.text,
         address: address.text,
@@ -218,7 +218,7 @@ class SalePageState extends State<SalePage> with LoadingFlag{
         email: email.text,
         phone: phone.text,
         ip: ip.text,
-        options: ExpresspayPayerOption( // Options
+        options: EdfaPgPayerOption( // Options
             middleName: middleName.text,
             birthdate: DateTime.parse(dob.text),
             address2: address.text,
@@ -226,40 +226,40 @@ class SalePageState extends State<SalePage> with LoadingFlag{
         )
     );
 
-    ExpresspaySaleOption? saleOption;
+    EdfaPgSaleOption? saleOption;
     if(channelId.text.isNotEmpty) {
-      saleOption = ExpresspaySaleOption(channelId: channelId.text, recurringInit: true) ;
+      saleOption = EdfaPgSaleOption(channelId: channelId.text, recurringInit: true) ;
     }
 
     final txn = Transaction(cardNumber: card.number ?? "", payerEmail: email.text, isAuth: isAuth);
-    ExpresspaySdk.instance.ADAPTER.SALE.execute(
+    EdfaPgSdk.instance.ADAPTER.SALE.execute(
         order: order,
         card: card,
         payer: payer,
         saleOption: saleOption,
         isAuth: isAuth,
         onResponse: SaleResponseCallback(
-            success: (ExpresspaySaleSuccess result) {
+            success: (EdfaPgSaleSuccess result) {
               debugPrint(result.toJson().toString());
               txn.fill(result).save();
             },
-            decline: (ExpresspaySaleDecline result) {
+            decline: (EdfaPgSaleDecline result) {
               debugPrint(result.toJson().toString());
               txn.fill(result).save();
             },
-            recurring: (ExpresspaySaleRecurring result) {
+            recurring: (EdfaPgSaleRecurring result) {
               debugPrint(result.toJson().toString());
               txn.fill(result).save();
             },
-            redirect: (ExpresspaySaleRedirect result) {
+            redirect: (EdfaPgSaleRedirect result) {
               debugPrint(result.toJson().toString());
               txn.fill(result).save();
             },
-            secure3d: (ExpresspaySale3DS result) {
+            secure3d: (EdfaPgSale3DS result) {
               debugPrint(result.toJson().toString());
               txn.fill(result).save();
             },
-            error: (ExpresspayError result) {
+            error: (EdfaPgError result) {
               debugPrint(result.toJson().toString());
             }
         ),

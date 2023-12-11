@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:expresspay_sdk/expresspay_sdk.dart';
+import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Transaction{
@@ -9,9 +9,9 @@ class Transaction{
 
   String? txnId;
   String? orderId;
-  ExpresspayAction? action;
-  ExpresspayResult? result;
-  ExpresspayStatus? status;
+  EdfaPgAction? action;
+  EdfaPgResult? result;
+  EdfaPgStatus? status;
 
   String  recurringToken = "";
   bool isAuth;
@@ -38,21 +38,21 @@ class Transaction{
     ob.orderId = json["orderId"] ?? "";
     ob.recurringToken = json["recurringToken"] ?? "";
     ob.isAuth = json["isAuth"] ?? false;
-    ob.action = ExpresspayAction.of(json["action"]);
-    ob.result = ExpresspayResult.of(json["result"]);
-    ob.status = ExpresspayStatus.of(json["status"]);
+    ob.action = EdfaPgAction.of(json["action"]);
+    ob.result = EdfaPgResult.of(json["result"]);
+    ob.status = EdfaPgStatus.of(json["status"]);
     return ob;
   }
 
 
-  Transaction fill(IExpresspayResult result){
+  Transaction fill(IEdfaPgResult result){
     this.txnId = result.transactionId;
     this.orderId = result.orderId;
     this.action = result.action;
     this.result = result.result;
     this.status = result.status;
-    if((result is ExpresspaySaleRecurring?)) {
-      this.recurringToken = (result as ExpresspaySaleRecurring?)?.recurringToken ?? "";
+    if((result is EdfaPgSaleRecurring?)) {
+      this.recurringToken = (result as EdfaPgSaleRecurring?)?.recurringToken ?? "";
     }
     return this;
   }
@@ -72,17 +72,17 @@ class Transaction{
 
   static Future<List<Transaction>> getRecurringSale() async{
     final l = await getAll();
-    return l.where((element) => element.action == ExpresspayAction.SALE).toList();
+    return l.where((element) => element.action == EdfaPgAction.SALE).toList();
   }
 
   static Future<List<Transaction>> getCapture() async{
     final l = await getAll();
-    return l.where((e) => e.action == ExpresspayAction.SALE && e.isAuth).toList();
+    return l.where((e) => e.action == EdfaPgAction.SALE && e.isAuth).toList();
   }
 
   static Future<List<Transaction>> getCreditVoid() async{
     final l = await getAll();
-    return l.where((e) => e.action == ExpresspayAction.SALE || e.action == ExpresspayAction.CAPTURE || e.isAuth).toList();
+    return l.where((e) => e.action == EdfaPgAction.SALE || e.action == EdfaPgAction.CAPTURE || e.isAuth).toList();
   }
 
   static clear() async{

@@ -2,12 +2,12 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:expresspay_sample/Credentials.dart';
-import 'package:expresspay_sample/actions/capture_page.dart';
-import 'package:expresspay_sample/actions/get_transaction_detail_page.dart';
-import 'package:expresspay_sample/actions/sale_page.dart';
-import 'package:expresspay_sample/transaction-storage.dart';
-import 'package:expresspay_sdk/expresspay_sdk.dart';
+import 'package:edfapg_sample/credentials.dart';
+import 'package:edfapg_sample/actions/capture_page.dart';
+import 'package:edfapg_sample/actions/get_transaction_detail_page.dart';
+import 'package:edfapg_sample/actions/sale_page.dart';
+import 'package:edfapg_sample/transaction-storage.dart';
+import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:flutter/material.dart';
 import 'actions/credit_void_page.dart';
 import 'actions/get_transaction_status_page.dart';
@@ -16,7 +16,7 @@ import 'global.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  ExpresspaySdk.instance.config(
+  EdfaPgSdk.instance.config(
     key: CLIENT_KEY, // Create a string variable which should be fill by 'Client Key' provided by expresspay.sa
     password: CLIENT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by expresspay.sa
     enableDebug: true
@@ -115,24 +115,24 @@ class ActionsPage extends StatelessWidget{
 
   saleWithCard(){
 
-    final order = ExpresspaySaleOrder(
-        id: ExpresspaySdk.instance.HELPER.generateUUID(), description: "Test Order",
+    final order = EdfaPgSaleOrder(
+        id: EdfaPgSdk.instance.HELPER.generateUUID(), description: "Test Order",
         currency: "SAR", amount: 0.10//Random().nextInt(9)/10, // will not exceed 0.9
     );
 
-    final payer = ExpresspayPayer(
+    final payer = EdfaPgPayer(
         firstName: "Zohaib", lastName: "Kambrani",
         address: "Express Pay", country: "SA", city: "Riyadh", zip: "123768",
         email: "a2zzuhaib@gmail.com", phone: "+966500409598",
         ip: "66.249.64.248",
-        options: ExpresspayPayerOption( // Options
+        options: EdfaPgPayerOption( // Options
             middleName: "Muhammad Iqbal",
             birthdate: DateTime.parse("1987-03-30"),
             address2: "King Fahad Road", state: "Olaya"
         )
     );
 
-    ExpressCardPay()
+    EdfaCardPay()
         .setOrder(order)
         .setPayer(payer)
         .onTransactionSuccess((response){
@@ -152,24 +152,24 @@ class ActionsPage extends StatelessWidget{
   }
 
   applePay() async{
-    final order = ExpresspaySaleOrder(
-        id: ExpresspaySdk.instance.HELPER.generateUUID(), description: "Test Order",
+    final order = EdfaPgSaleOrder(
+        id: EdfaPgSdk.instance.HELPER.generateUUID(), description: "Test Order",
         currency: "SAR", amount: 0.10//Random().nextInt(9)/10, // will not exceed 0.9
     );
 
-    final payer = ExpresspayPayer(
+    final payer = EdfaPgPayer(
         firstName: "Zohaib", lastName: "Kambrani",
         address: "Express Pay", country: "SA", city: "Riyadh", zip: "123768",
         email: "a2zzuhaib@gmail.com", phone: "+966500409598",
         ip: "66.249.64.248",
-        options: ExpresspayPayerOption( // Options
+        options: EdfaPgPayerOption( // Options
             middleName: "Muhammad Iqbal",
             birthdate: DateTime.parse("1987-03-30"),
             address2: "King Fahad Road", state: "Olaya"
         )
     );
 
-    ExpressApplePay()
+    EdfaApplePay()
         .setOrder(order)
         .setPayer(payer)
         .setApplePayMerchantID("merchant.expresspay.darlana")

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:expresspay_sample/components/card_types.dart';
-import 'package:expresspay_sample/components/recurring_option.dart';
-import 'package:expresspay_sample/global.dart';
-import 'package:expresspay_sample/inheritable/transaction_state.dart';
-import 'package:expresspay_sample/transaction-storage.dart';
-import 'package:expresspay_sdk/expresspay_sdk.dart';
+import 'package:edfapg_sample/components/card_types.dart';
+import 'package:edfapg_sample/components/recurring_option.dart';
+import 'package:edfapg_sample/global.dart';
+import 'package:edfapg_sample/inheritable/transaction_state.dart';
+import 'package:edfapg_sample/transaction-storage.dart';
+import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -152,16 +152,16 @@ class TransactionStatusPageState extends TransactionState<TransactionStatusPage>
     response.text = "";
 
     final txn = selectedTxn;
-    ExpresspaySdk.instance.ADAPTER.TRANSACTION_STATUS.execute(
+    EdfaPgSdk.instance.ADAPTER.TRANSACTION_STATUS.execute(
         transactionId: selectedTxn?.txnId ?? "",
         cardNumber: selectedTxn?.cardNumber ?? "",
         payerEmail: selectedTxn?.payerEmail ?? "",
         onResponse: TransactionStatusResponseCallback(
-            success: (ExpresspayTransactionStatusSuccess result){
+            success: (EdfaPgTransactionStatusSuccess result){
               debugPrint(result.toJson().toString());
               txn?.fill(result).save();
             },
-            error: (ExpresspayError result){
+            error: (EdfaPgError result){
               debugPrint(result.toJson().toString());
             }
         ),
