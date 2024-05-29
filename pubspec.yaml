@@ -48,9 +48,9 @@ dependencies:
   intl: ^0.17.0
   shared_preferences: ^2.0.20
 
-#  edfapg_sdk: any
-  edfapg_sdk:
-    path: ../edfa-pg-flutter-sdk
+  edfapg_sdk: 0.0.9
+#  edfapg_sdk:
+#    path: ../edfa-pg-flutter-sdk
 
 
   # The following adds the Cupertino Icons font to your application.

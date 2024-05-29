@@ -14,11 +14,11 @@ import 'actions/get_transaction_status_page.dart';
 import 'actions/recurring_sale_page.dart';
 import 'global.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   EdfaPgSdk.instance.config(
-    key: CLIENT_KEY, // Create a string variable which should be fill by 'Client Key' provided by expresspay.sa
-    password: CLIENT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by expresspay.sa
+    key: MERCHANT_KEY, // Create a string variable which should be fill by 'Client Key' provided by expresspay.sa
+    password: MERCHANT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by expresspay.sa
     enableDebug: true
   );
 
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ExpressPaySDK',
+      title: 'Edfa Payment Gateway SDK',
       theme: ThemeData(
         primarySwatch: MaterialColor(primaryColor.value, swatch),
       ),
@@ -117,7 +117,7 @@ class ActionsPage extends StatelessWidget{
 
     final order = EdfaPgSaleOrder(
         id: EdfaPgSdk.instance.HELPER.generateUUID(), description: "Test Order",
-        currency: "SAR", amount: 0.10//Random().nextInt(9)/10, // will not exceed 0.9
+        currency: "SAR", amount: 1.00//Random().nextInt(9)/10, // will not exceed 0.9
     );
 
     final payer = EdfaPgPayer(

@@ -1,8 +1,8 @@
 PODS:
-  - edfapg_sdk (0.0.1):
-    - EdfaPgSdk (~> 1.0.1)
+  - edfapg_sdk (1.0.0):
+    - EdfaPgSdk (~> 1.0.4)
     - Flutter
-  - EdfaPgSdk (1.0.1)
+  - EdfaPgSdk (1.0.4)
   - Flutter (1.0.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
@@ -26,8 +26,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
 SPEC CHECKSUMS:
-  edfapg_sdk: 766c05b4f99328835d7a1ca6690947b6ef87c974
-  EdfaPgSdk: b97cb887351c93ff0e30c819eb063a924ba6a44d
+  edfapg_sdk: 05e8615e5d37ec90d80d4c81f049dc30418cb0f2
+  EdfaPgSdk: 5b09e08943d63abfddec46d76efaf25cc143f5c9
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
 
