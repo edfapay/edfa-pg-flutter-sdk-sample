@@ -19,6 +19,9 @@ allprojects {
             url 'https://jitpack.io'
             content { includeGroup "com.github.edfapay" }
         }
+        maven {
+            url uri('/Volumes/Data/Projects/local-maven-repo') // Adjust the path as needed
+        }
     }
 }
 

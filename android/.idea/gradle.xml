@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.0.17/android" />
+            <option value="$PROJECT_DIR$/../../../Android/edfpay-pg-android-sdk/edfa-pg-sdk" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/../../edfa-pg-flutter-sdk/android" />
