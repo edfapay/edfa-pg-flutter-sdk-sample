@@ -1,106 +1,187 @@
-# edfapg_sdk
-
-[View SDK Wiki](https://github.com/edfapay/edfa-pg-flutter-sdk.git) | [Report new issue](https://github.com/edfapay/edfa-pg-flutter-sdk.git/issues/new)
-
-# EdfaPay Flutter SDK & [Sample](https://github.com/edfapay/edfa-pg-flutter-sdk.git)
+# EdfaPay Payment Gateway Flutter SDK
 
 EdfaPay is a white-label payment software provider. Thanks to our 15+ years of experience in the
 payment industry, we’ve developed a state-of-the-art white-label payment system that ensures smooth
 and uninterrupted payment flow for merchants across industries.
- 
-[//]: # (<p align="center">)
-
-[//]: # (  <a href="https://edfapay.com/home/">)
-
-[//]: # (      <img src="https://github.com/ExpresspaySa/expresspay-flutter-sdk/blob/main/media/header.png" alt="Expresspay" width="400px"/>)
-
-[//]: # (  </a>)
-
-[//]: # (</p>)
 
 EdfaPay Flutter SDK was developed and designed with one purpose: to help the Flutter developers
 easily integrate the EdfaPay API Payment Platform for a specific merchant.
 
-To properly set up the SDK, read [Wiki](https://github.com/edfapay/edfa-pg-flutter-sdk/wiki)
-first.
 
-## Setup And Installation
+## Installation
+> [!IMPORTANT]
+> ### Configure Repository
+> This Flutter plugin is a wrapper of Android and iOS native libraries.
+> 
+> **Setup Android**
+> 
+> You must add the `jitpack` repository support to the **Gradle** to access and download the native dependency. 
+> Add below to the `./android/build.gradle` of your project
+> 
+> ```groovy
+> allprojects {
+>     repositories {
+>         ...
+>         center()
+> 
+>         // Add below at same location 
+>         maven {
+>             url 'https://jitpack.io'
+>         }
+>     }
+> }
+> ```
+>
+> 
+> **Setup iOS**
+> 
+> iOS does not require any setup just install Flutter plugin.
+> If you need to enable `Apple Pay` in your app it can be enabled by following the instructions
+> at [Link](https://github.com/edfapay/edfa-pg-flutter-sdk)
 
-This Flutter plugin is based on iOS and Android native libraries.
-You need to add the `jitpack` repository support and `credentials` to the gradle to access the
-secured Android library. `Follow Below`
+> [!IMPORTANT]
+> ### Intalling Flutter Plugin
+> 
+> In the `dependencies:` section of your `pubspec.yaml`, add the following lines:
+> 
+> ```pubspec.yaml
+> dependencies:
+>   intl: ^0.17.0
+>   edfapg_sdk: any
+> ```
 
-**Setup Android**
-Add to the root build.gradle in Android Project at Path:(${ProjectRoot}/android/build.gradle):
+> [!IMPORTANT]
+> ### Configuring the Proguard Rule
+>
+> **Android**
+> 
+> If your project is obfuscated with proguard, please add the rule below to your android project **proguard-rules.pro**
+> 
+> ```
+> -keep class com.edfapg.sdk.** {
+>   public protected private *;
+> }
+> ```
 
-```groovy
-allprojects {
-    repositories {
-        ...
-        jcenter()
-        maven {
-            url 'https://jitpack.io'
-        }
-    }
-}
-```
+## Usage
+> [!IMPORTANT]
+> ### Initialize SDK
+> 
+> ```dart
+> EdfaPgSdk.instance.config(
+>   key: MERCHANT_CLIENT_KEY, // Your Secret Merchant Key
+>   password: MERCHANT_CLIENT_PASSWORD, // Your Secret Merchant Password
+>   enableDebug: true
+> );
+> ```
 
-**Setup iOS**
-iOS does not required any setup just install flutter plugin where the `iOS framewework` is embedded
-within the plugin in iOS plaform directory.
-If you need to enable `Apple Pay` in your app it can be enable by following the instructions
-at [Link](https://github.com/edfapay/edfa-pg-flutter-sdk)
+> [!TIP]
+> ### Get Ready for Payment
+> **Create `EdfaPgSaleOrder` Model**
+> ```dart
+>     final order = EdfaPgSaleOrder(
+>        id: EdfaPgSdk.instance.HELPER.generateUUID(),
+>        description: "Test Order",
+>        currency: "SAR",
+>        amount: 1.00//Random().nextInt(9)/10, // will not exceed 0.9
+>    );
+> ```
+>
+> **Create `EdfaPgPayer` Model**
+> ```dart
+>    final payer = EdfaPgPayer(
+>        firstName: "First Name",
+>        lastName: "Last Name",
+>        address: "EdfaPay Payment Gateway",
+>        country: "SA",
+>        city: "Riyadh",
+>        zip: "123768",
+>        email: "support@edapay.com",
+>        phone: "+966500409598",
+>        ip: "66.249.64.248",
+>        options: EdfaPgPayerOption( // Options
+>            middleName: "Middle Name",
+>            birthdate: DateTime.parse("1987-03-30"),
+>            address2: "Usman Bin Affan",
+>            state: "Al Izdihar"
+>        )
+>    );
+> ```
+> 
+> **Payment with Card**
+> ```dart
+>    EdfaCardPay()
+>        .setOrder(order)
+>        .setPayer(payer)
+>        .onTransactionSuccess((response){
+>          print("onTransactionSuccess.response ===> ${response.toString()}");
+>
+>    }).onTransactionFailure((response){
+>      print("onTransactionFailure.response ===> ${response.toString()}");
+>
+>    }).onError((error){
+>      print("onError.response ===> ${error.toString()}");
+>
+>    }).initialize(context);
+> ```
+> **Pay With ApplePay - iOS Only**
+> ```dart
+>     EdfaApplePay()
+>         .setOrder(order)
+>         .setPayer(payer)
+>         .setApplePayMerchantID(APPLEPAY_MERCHANT_ID)
+>         .onAuthentication((response){
+>       print("onAuthentication.response ===> ${response.toString()}");
+> 
+>     }).onTransactionSuccess((response){
+>       print("onTransactionSuccess.response ===> ${response.toString()}");
+> 
+>     }).onTransactionFailure((response){
+>       print("onTransactionFailure.response ===> ${response.toString()}");
+> 
+>     }).onError((error){
+>       print("onError.response ===> ${error.toString()}");
+> 
+>     }).initialize(context);
+> ```dart
 
-## Intalling Flutter Plugin**
+<!--
+> [!TIP]
+> ### Sale Transaction
+> <details>
+>   <summary> To pay with card </summary>
+> </details>
 
-In the `dependencies:` section of your `pubspec.yaml`, add the following lines:
+> [!TIP]
+> ### Recurring Transaction
+> <details>
+>   <summary> To pay with card </summary>
+> </details>
 
-```pubspec.yaml
-dependencies:
-  intl: ^0.17.0
-  edfapg_sdk: any
-```
+> [!TIP]
+> ### Capture Transaction
+> <details>
+>   <summary> To pay with card </summary>
+> </details>
 
-## Configuring the Proguard Rule
+> [!TIP]
+> ### Credit Void Transaction
+> <details>
+>   <summary> To pay with card </summary>
+> </details>
 
-If your project is obfuscated with proguard, please add the rule below to your project **proguard-rules.pro**
+> [!TIP]
+> ### Transaction Status
+> <details>
+>   <summary> To pay with card </summary>
+> </details>
 
-```
--keep class com.edfapg.sdk.** {
-  public protected private *;
-}
-```
-
-
-## Initialize SDK
-
-```dart
-EdfaPgSdk.instance.config(
-  key: MERCHANT_CLIENT_KEY, // Your Secret Merchant Key
-  password: MERCHANT_CLIENT_PASSWORD, // Your Secret Merchant Password
-  enableDebug: true
-);
-```
-
-[More Detail](https://github.com/edfapay/edfa-pg-flutter-sdk)
-
-## Quick Payment Implementation
-
-[**Card Payment for iOS/Android
-**](https://github.com/edfapay/edfa-pg-flutter-sdk/wiki)
-Start the card payment with one click, easy and short line of codes. It will help the developer to
-easily implement the payment using card in thier application. click
-the [link](https://github.com/edfapay/edfa-pg-flutter-sdk/wiki)
-for easy steps to start payments.
-
-[**Apple Pay Payment for iOS
-**](https://github.com/edfapay/edfa-pg-flutter-sdk/wiki)
-Start the Apple Pay payment with one click, easy and short line of codes. It will help the developer
-to easily implement the payment using ApplePay in thier application. the developer just need to
-configure and enable the Apple Pay in thier AppleDeveloper Account and call the simple function.
-click
-the [link](https://github.com/edfapay/edfa-pg-ios-sdk-pod/)
-for easy steps to start payments with ApplePay.
+> [!TIP]
+> ### Transaction Detail
+> <details>
+>   <summary> To pay with card </summary>
+> </details>
+-->
 
 ## Getting help
 
