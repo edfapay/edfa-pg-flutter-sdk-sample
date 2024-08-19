@@ -195,34 +195,36 @@ easily integrate the EdfaPay API Payment Platform for a specific merchant.
 > >         onResponse: SaleResponseCallback(
 > >             success: (EdfaPgSaleSuccess result) {
 > >               debugPrint(result.toJson().toString());
-> >               txn.fill(result).save();
+> >               
 > >             },
 > >             decline: (EdfaPgSaleDecline result) {
 > >               debugPrint(result.toJson().toString());
-> >               txn.fill(result).save();
+> >               
 > >             },
 > >             recurring: (EdfaPgSaleRecurring result) {
 > >               debugPrint(result.toJson().toString());
-> >               txn.fill(result).save();
+> >               
 > >             },
 > >             redirect: (EdfaPgSaleRedirect result) {
 > >               debugPrint(result.toJson().toString());
-> >               txn.fill(result).save();
+> >               
 > >             },
 > >             secure3d: (EdfaPgSale3DS result) {
 > >               debugPrint(result.toJson().toString());
-> >               txn.fill(result).save();
+> >               
 > >             },
 > >             error: (EdfaPgError result) {
 > >               debugPrint(result.toJson().toString());
+> > 
 > >             }
 > >         ),
 > >         onResponseJSON: (data){
-> >           setState(endLoading);
-> >           response.text = prettyPrint(data);
+> >           debugPrint(data);
+> > 
 > >         },
 > >         onFailure: (result) {
 > >           debugPrint(result.toJson().toString());
+> > 
 > >         }
 > >     );
 > > ```
