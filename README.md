@@ -406,47 +406,6 @@ easily integrate the EdfaPay API Payment Platform for a specific merchant.
 > > ```
 
 
-
-
-
-<!--
-> [!TIP]
-> ### Sale Transaction
-> <details>
->   <summary> To pay with card </summary>
-> </details>
-
-> [!TIP]
-> ### Recurring Transaction
-> <details>
->   <summary> To pay with card </summary>
-> </details>
-
-> [!TIP]
-> ### Capture Transaction
-> <details>
->   <summary> To pay with card </summary>
-> </details>
-
-> [!TIP]
-> ### Credit Void Transaction
-> <details>
->   <summary> To pay with card </summary>
-> </details>
-
-> [!TIP]
-> ### Transaction Status
-> <details>
->   <summary> To pay with card </summary>
-> </details>
-
-> [!TIP]
-> ### Transaction Detail
-> <details>
->   <summary> To pay with card </summary>
-> </details>
--->
-
 ## Getting help
 
 To report a specific issue or feature request, open
