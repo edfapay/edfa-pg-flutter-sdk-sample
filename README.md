@@ -162,6 +162,250 @@ easily integrate the EdfaPay API Payment Platform for a specific merchant.
 > > 
 > >     }).initialize(context);
 > > ```
+>
+> ### Addon's
+> > **Create `EdfaPgSaleOrder` & `EdfaPgPayer` Model** [Like This](https://github.com/edfapay/edfa-pg-flutter-sdk-sample?tab=readme-ov-file#get-ready-for-payment)
+> > 
+> > **Create `EdfaPgSaleOption` Model**
+> > ```dart
+> >     final saleOption = EdfaPgSaleOption(
+> >         channelId: "channel-id-here", // channel-id if its enable for merchant
+> >         recurringInit: true // Make sure recurring is enabled for merchant and [true=if want to do recurring, false=if don't want do recurring]
+> >     );
+> > ```
+> > 
+> > **Create `EdfaPgCard` Model**
+> > ```dart
+> >     final card = EdfaPgCard(
+> >         number: "1234567890987654",
+> >         expireMonth: 01,
+> >         expireYear: 2028,
+> >         cvv: 123
+> >     );
+> > ```
+> > 
+> > **Sale Transaction** - Make sure to pass null to `saleOption:` and false to `isAuth:`
+> > ```dart
+> >     EdfaPgSdk.instance.ADAPTER.SALE.execute(
+> >         order: order,
+> >         card: card,
+> >         payer: payer,
+> >         saleOption: null,
+> >         isAuth: false,
+> >         onResponse: SaleResponseCallback(
+> >             success: (EdfaPgSaleSuccess result) {
+> >               debugPrint(result.toJson().toString());
+> >               txn.fill(result).save();
+> >             },
+> >             decline: (EdfaPgSaleDecline result) {
+> >               debugPrint(result.toJson().toString());
+> >               txn.fill(result).save();
+> >             },
+> >             recurring: (EdfaPgSaleRecurring result) {
+> >               debugPrint(result.toJson().toString());
+> >               txn.fill(result).save();
+> >             },
+> >             redirect: (EdfaPgSaleRedirect result) {
+> >               debugPrint(result.toJson().toString());
+> >               txn.fill(result).save();
+> >             },
+> >             secure3d: (EdfaPgSale3DS result) {
+> >               debugPrint(result.toJson().toString());
+> >               txn.fill(result).save();
+> >             },
+> >             error: (EdfaPgError result) {
+> >               debugPrint(result.toJson().toString());
+> >             }
+> >         ),
+> >         onResponseJSON: (data){
+> >           setState(endLoading);
+> >           response.text = prettyPrint(data);
+> >         },
+> >         onFailure: (result) {
+> >           debugPrint(result.toJson().toString());
+> >         }
+> >     );
+> > ```
+>
+> > **Recurring Transaction**
+> > - Make sure to pass false to `isAuth:`
+> > - Card Number should be passed the same used for the first `Sale` with `EdfaPgSaleOption.recurringInit==true`
+> > - `EdfaPgRecurringOptions.firstTransactionId:` should `transactionId` from first success `Sale` with `EdfaPgSaleOption.recurringInit==true`
+> > - `EdfaPgRecurringOptions.token:` Should be recurringToken from first success `Sale` with `EdfaPgSaleOption.recurringInit==true`
+> > ```dart
+> >     EdfaPgSdk.instance.ADAPTER.RECURRING_SALE.execute(
+> >         cardNumber: "1234567890123456",
+> >         isAuth: false,
+> >         order: order,
+> >         payerEmail: "support@edfapay.com",
+> >         recurringOptions: EdfaPgRecurringOptions(
+> >             firstTransactionId: "c9f9b51b-72f4-4e2d-8a49-3b26c97b2f50",
+> >             token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+> >         ),
+> >         onResponse: RecurringSaleResponseCallback(
+> >             success: (EdfaPgSaleSuccess result) {
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             decline: (EdfaPgSaleDecline result) {
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             recurring: (EdfaPgSaleRecurring result) {
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             redirect: (EdfaPgSaleRedirect result) {
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             secure3d: (EdfaPgSale3DS result) {
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             error: (EdfaPgError result) {
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             }
+> >         ),
+> >         onResponseJSON: (data){
+> >           debugPrint(data);
+> > 
+> >         },
+> >         onFailure: (result) {
+> >           debugPrint(result.toJson().toString());
+> > 
+> >         }
+> >     );
+> > ```
+> 
+> > **Capture Transaction**
+> > - `transactionId:` should `transactionId` from success `Sale` with `isAuth:true`
+> > - Card Number should be passed the same used for the `Sale` with `isAuth:true`
+> > - `cardNumber:` should authorized by `Sale` with `isAuth:true`
+> > - `amount:` should be the same as `Sale` with `isAuth:true`
+> > ```dart
+> >     EdfaPgSdk.instance.ADAPTER.CAPTURE.execute(
+> >         amount: 1.0,
+> >         transactionId: "c9f9b51b-72f4-4e2d-8a49-3b26c97b2f50",
+> >         cardNumber: "1234567890123456",
+> >         payerEmail: "support@edfapay.com",
+> >         onResponse: CaptureResponseCallback(
+> >             success: (EdfaPgCaptureSuccess result){
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             decline: (EdfaPgCaptureDecline result){
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             error: (EdfaPgError result){
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             }
+> >         ),
+> >         onResponseJSON: (data){
+> >           debugPrint(data);
+> > 
+> >         },
+> >         onFailure: (result) {
+> >           debugPrint(result.toJson().toString());
+> > 
+> >         }
+> >     );
+> > ```
+>
+> > **Credit Void Transaction**
+> > - `transactionId:` should `transactionId` from success `Sale` with `isAuth:true`
+> > - Card Number should be passed the same used for the `Sale` with `isAuth:true`
+> > - `cardNumber:` should authorized by `Sale` with `isAuth:true`
+> > - `amount:` should be the same as `Sale` with `isAuth:true`
+> > ```dart
+> >     EdfaPgSdk.instance.ADAPTER.CREDIT_VOID.execute(
+> >         amount: 1.0,
+> >         transactionId: "c9f9b51b-72f4-4e2d-8a49-3b26c97b2f50",
+> >         cardNumber: "1234567890123456",
+> >         payerEmail: "support@edfapay.com",
+> >         onResponse: CreditVoidResponseCallback(
+> >             success: (EdfaPgCreditVoidSuccess result){
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             error: (EdfaPgError result){
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             }
+> >         ),
+> >         onResponseJSON: (data){
+> >           debugPrint(data);
+> > 
+> >         },
+> >         onFailure: (result) {
+> >           debugPrint(result.toJson().toString());
+> > 
+> >         }
+> >     );
+> > ```
+>
+> > **Transaction Detail**
+> > - `transactionId:` should be from the last transaction,
+> > - `cardNumber:` should be passed the same used for the last transaction
+> > ```dart
+> >     EdfaPgSdk.instance.ADAPTER.TRANSACTION_DETAILS.execute(
+> >         transactionId: "c9f9b51b-72f4-4e2d-8a49-3b26c97b2f50",
+> >         cardNumber: "1234567890123456",
+> >         payerEmail: "support@edfapay.com",
+> >         onResponse: TransactionDetailsResponseCallback(
+> >             success: (EdfaPgTransactionDetailsSuccess result){
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             },
+> >             error: (EdfaPgError result){
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             }
+> >         ),
+> >         onResponseJSON: (data){
+> >           debugPrint(data);
+> > 
+> >         },
+> >         onFailure: (result) {
+> >           debugPrint(result.toJson().toString());
+> > 
+> >         }
+> >     );
+> > ```
+>
+> > **Transaction Status**
+> > - `transactionId:` should be from the last transaction,
+> > - `cardNumber:` should be passed the same used for the last transaction
+> > ```dart
+> >     EdfaPgSdk.instance.ADAPTER.TRANSACTION_STATUS.execute(
+> >         transactionId: "c9f9b51b-72f4-4e2d-8a49-3b26c97b2f50",
+> >         cardNumber: "1234567890123456",
+> >         payerEmail: "support@edfapay.com",
+> >         onResponse: TransactionStatusResponseCallback(
+> >             success: (EdfaPgTransactionStatusSuccess result){
+> >               debugPrint(result.toJson().toString());
+> >             },
+> >             error: (EdfaPgError result){
+> >               debugPrint(result.toJson().toString());
+> > 
+> >             }
+> >         ),
+> >         onResponseJSON: (data){
+> >           debugPrint(data);
+> >         },
+> >         onFailure: (result) {
+> >           debugPrint(result.toJson().toString());
+> > 
+> >         }
+> >     );
+> > ```
+
+
+
+
 
 <!--
 > [!TIP]
