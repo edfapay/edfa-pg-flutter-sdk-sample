@@ -16,17 +16,34 @@ easily integrate the EdfaPay API Payment Platform for a specific merchant.
 > **Setup Android**
 > 
 > You must add the `jitpack` repository support to the **Gradle** to access and download the native dependency. 
+>
 > Add below to the `./android/build.gradle` of your project
 > 
 > ```groovy
 > allprojects {
 >     repositories {
 >         ...
->         center()
 > 
->         // Add below at same location 
+>         // Add below at the same location 
 >         maven {
 >             url 'https://jitpack.io'
+>         }
+>     }
+> }
+> ```
+> ----
+>
+> Or add below to the `./android/settings.gradle` of your project
+> 
+> ```groovy
+> dependencyResolutionManagement {
+>     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+>     repositories {
+>         ...
+> 
+>         // Add below at the same location 
+>         maven {
+>             url "https://jitpack.io"
 >         }
 >     }
 > }
@@ -77,73 +94,74 @@ easily integrate the EdfaPay API Payment Platform for a specific merchant.
 
 > [!TIP]
 > ### Get Ready for Payment
-> **Create `EdfaPgSaleOrder` Model**
-> ```dart
->     final order = EdfaPgSaleOrder(
->        id: EdfaPgSdk.instance.HELPER.generateUUID(),
->        description: "Test Order",
->        currency: "SAR",
->        amount: 1.00//Random().nextInt(9)/10, // will not exceed 0.9
->    );
-> ```
+> > **Create `EdfaPgSaleOrder` Model**
+> > ```dart
+> >     final order = EdfaPgSaleOrder(
+> >        id: EdfaPgSdk.instance.HELPER.generateUUID(),
+> >        description: "Test Order",
+> >        currency: "SAR",
+> >        amount: 1.00//Random().nextInt(9)/10, // will not exceed 0.9
+> >    );
+> > ```
 >
-> **Create `EdfaPgPayer` Model**
-> ```dart
->    final payer = EdfaPgPayer(
->        firstName: "First Name",
->        lastName: "Last Name",
->        address: "EdfaPay Payment Gateway",
->        country: "SA",
->        city: "Riyadh",
->        zip: "123768",
->        email: "support@edapay.com",
->        phone: "+966500409598",
->        ip: "66.249.64.248",
->        options: EdfaPgPayerOption( // Options
->            middleName: "Middle Name",
->            birthdate: DateTime.parse("1987-03-30"),
->            address2: "Usman Bin Affan",
->            state: "Al Izdihar"
->        )
->    );
-> ```
+> > **Create `EdfaPgPayer` Model**
+> > ```dart
+> >    final payer = EdfaPgPayer(
+> >        firstName: "First Name",
+> >        lastName: "Last Name",
+> >        address: "EdfaPay Payment Gateway",
+> >        country: "SA",
+> >        city: "Riyadh",
+> >        zip: "123768",
+> >        email: "support@edapay.com",
+> >        phone: "+966500409598",
+> >        ip: "66.249.64.248",
+> >        options: EdfaPgPayerOption( // Options
+> >            middleName: "Middle Name",
+> >            birthdate: DateTime.parse("1987-03-30"),
+> >            address2: "Usman Bin Affan",
+> >            state: "Al Izdihar"
+> >        )
+> >    );
+> > ```
 > 
-> **Payment with Card**
-> ```dart
->    EdfaCardPay()
->        .setOrder(order)
->        .setPayer(payer)
->        .onTransactionSuccess((response){
->          print("onTransactionSuccess.response ===> ${response.toString()}");
+> > **Payment with Card**
+> > ```dart
+> >    EdfaCardPay()
+> >        .setOrder(order)
+> >        .setPayer(payer)
+> >        .onTransactionSuccess((response){
+> >          print("onTransactionSuccess.response ===> ${response.toString()}");
+> >
+> >    }).onTransactionFailure((response){
+> >      print("onTransactionFailure.response ===> ${response.toString()}");
+> >
+> >    }).onError((error){
+> >      print("onError.response ===> ${error.toString()}");
+> >
+> >    }).initialize(context);
+> > ```
 >
->    }).onTransactionFailure((response){
->      print("onTransactionFailure.response ===> ${response.toString()}");
->
->    }).onError((error){
->      print("onError.response ===> ${error.toString()}");
->
->    }).initialize(context);
-> ```
-> **Pay With ApplePay - iOS Only**
-> ```dart
->     EdfaApplePay()
->         .setOrder(order)
->         .setPayer(payer)
->         .setApplePayMerchantID(APPLEPAY_MERCHANT_ID)
->         .onAuthentication((response){
->       print("onAuthentication.response ===> ${response.toString()}");
-> 
->     }).onTransactionSuccess((response){
->       print("onTransactionSuccess.response ===> ${response.toString()}");
-> 
->     }).onTransactionFailure((response){
->       print("onTransactionFailure.response ===> ${response.toString()}");
-> 
->     }).onError((error){
->       print("onError.response ===> ${error.toString()}");
-> 
->     }).initialize(context);
-> ```dart
+> > **Pay With ApplePay - iOS Only**
+> > ```dart
+> >     EdfaApplePay()
+> >         .setOrder(order)
+> >         .setPayer(payer)
+> >         .setApplePayMerchantID(APPLEPAY_MERCHANT_ID)
+> >         .onAuthentication((response){
+> >       print("onAuthentication.response ===> ${response.toString()}");
+> > 
+> >     }).onTransactionSuccess((response){
+> >       print("onTransactionSuccess.response ===> ${response.toString()}");
+> > 
+> >     }).onTransactionFailure((response){
+> >       print("onTransactionFailure.response ===> ${response.toString()}");
+> > 
+> >     }).onError((error){
+> >       print("onError.response ===> ${error.toString()}");
+> > 
+> >     }).initialize(context);
+> > ```
 
 <!--
 > [!TIP]
