@@ -45,7 +45,7 @@ dependencies:
 
 
   faker: ^2.1.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   shared_preferences: ^2.0.20
 
 #  edfapg_sdk: 0.1.1
