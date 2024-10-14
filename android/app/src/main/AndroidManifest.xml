@@ -1,10 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.expresspay.sample.expresspay_sample">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="expresspay_sample"
+        android:label="EdfaPG Sample"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+       tools:replace="android:icon"
+       >
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

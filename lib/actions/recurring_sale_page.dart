@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import '../inheritable/loading_flag.dart';
 
 class RecurringSalePage extends StatefulWidget {
-  List<Transaction> transactions;
+  List<Transactions> transactions;
   RecurringSalePage(this.transactions);
 
   @override
@@ -21,7 +21,7 @@ class RecurringSalePage extends StatefulWidget {
 
 var _faker = Faker();
 class RecurringSalePageState extends TransactionState<RecurringSalePage> with LoadingFlag{
-  RecurringSalePageState(List<Transaction> transactions) : super(transactions);
+  RecurringSalePageState(List<Transactions> transactions) : super(transactions);
 
   // Order:
   TextEditingController txnId = TextEditingController(text: "");

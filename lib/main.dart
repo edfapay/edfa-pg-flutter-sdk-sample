@@ -1,7 +1,8 @@
 
 import 'dart:io';
-import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
+import 'package:edfapg_sample/change-language-page.dart';
 import 'package:edfapg_sample/credentials.dart';
 import 'package:edfapg_sample/actions/capture_page.dart';
 import 'package:edfapg_sample/actions/get_transaction_detail_page.dart';
@@ -14,6 +15,8 @@ import 'actions/get_transaction_status_page.dart';
 import 'actions/recurring_sale_page.dart';
 import 'global.dart';
 
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   EdfaPgSdk.instance.config(
@@ -22,7 +25,16 @@ void main() async {
     enableDebug: true
   );
 
-  runApp(const MyApp());
+  runApp(
+      EasyLocalization(
+        supportedLocales: locales.values.toList(),
+        path: 'assets/translations', // <-- change the path of the translation files
+        fallbackLocale: Locale('ar', 'SA'),
+        startLocale: Locale('ar', 'SA'),
+        useOnlyLangCode: true,
+        child: const MyApp(),
+      )
+  );
 }
 
 
@@ -37,6 +49,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: MaterialColor(primaryColor.value, swatch),
       ),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       home:  ActionsPage(),
     );
   }
@@ -53,10 +68,8 @@ class ActionsPage extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: const Text("ExpressPaySDKSample"),
-        actions: const [
-          TextButton(onPressed: Transaction.clear, child: Text("Clear", style: TextStyle(color: Colors.white)))
-        ],
+        title: const Text("EdfaPaySDKSample"),
+        actions: const [],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -73,6 +86,9 @@ class ActionsPage extends StatelessWidget{
             button("SALE_WITH_CARD_UI", saleWithCard),
             if(Platform.isIOS)
               button("APPLE_PAY", applePay),
+            const Divider(height: 30, thickness: 1, color: Colors.black),
+            button("Clear Transaction Cache", Transactions.clear),
+            button("Change Language", changeLanguage),
           ],
         ),
       ),
@@ -84,31 +100,31 @@ class ActionsPage extends StatelessWidget{
   }
 
   recurringSale(){
-    Transaction.getRecurringSale().then((value){
+    Transactions.getRecurringSale().then((value){
       Navigator.of(context).push(pageRoute(RecurringSalePage(value)));
     });
   }
 
   capture(){
-    Transaction.getAll().then((value){
+    Transactions.getAll().then((value){
       Navigator.of(context).push(pageRoute(CapturePage(value)));
     });
   }
 
   creditVoid(){
-    Transaction.getAll().then((value){
+    Transactions.getAll().then((value){
       Navigator.of(context).push(pageRoute(CreditVoidPage(value)));
     });
   }
 
   transDetail(){
-    Transaction.getAll().then((value){
+    Transactions.getAll().then((value){
       Navigator.of(context).push(pageRoute(TransactionDetailPage(value)));
     });
   }
 
   transSatus(){
-    Transaction.getAll().then((value){
+    Transactions.getAll().then((value){
       Navigator.of(context).push(pageRoute(TransactionStatusPage(value)));
     });
   }
@@ -121,15 +137,15 @@ class ActionsPage extends StatelessWidget{
     );
 
     final payer = EdfaPgPayer(
-        firstName: "Zohaib", lastName: "Kambrani",
-        address: "Express Pay", country: "SA", city: "Riyadh", zip: "123768",
+        firstName: "", lastName: "",
+        address: "", country: "", city: "", zip: "",
         email: "a2zzuhaib@gmail.com", phone: "+966500409598",
         ip: "66.249.64.248",
-        options: EdfaPgPayerOption( // Options
-            middleName: "Muhammad Iqbal",
-            birthdate: DateTime.parse("1987-03-30"),
-            address2: "King Fahad Road", state: "Olaya"
-        )
+        // options: EdfaPgPayerOption( // Options
+        //     // middleName: "Muhammad Iqbal",
+        //     // birthdate: DateTime.parse("1987-03-30"),
+        //     // address2: "King Fahad Road", state: "Olaya"
+        // )
     );
 
     EdfaCardPay()
@@ -190,6 +206,10 @@ class ActionsPage extends StatelessWidget{
       alert(context, "Error:\n${error}");
 
     }).initialize(context);
+  }
+
+  changeLanguage(){
+    Navigator.of(context).push(pageRoute(ChangeLanguagePage()));
   }
 
 }

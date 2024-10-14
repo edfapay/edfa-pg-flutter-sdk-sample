@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import '../inheritable/loading_flag.dart';
 
 class CreditVoidPage extends StatefulWidget {
-  List<Transaction> transactions;
+  List<Transactions> transactions;
   CreditVoidPage(this.transactions);
 
   @override
@@ -23,7 +23,7 @@ class CreditVoidPage extends StatefulWidget {
 
 
 class CreditVoidPageState extends TransactionState<CreditVoidPage> with LoadingFlag{
-  CreditVoidPageState(List<Transaction> transactions) : super(transactions);
+  CreditVoidPageState(List<Transactions> transactions) : super(transactions);
 
   TextEditingController amount = TextEditingController(text: "");
   TextEditingController response = TextEditingController(text: "");

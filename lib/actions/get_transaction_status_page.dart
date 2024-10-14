@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import '../inheritable/loading_flag.dart';
 
 class TransactionStatusPage extends StatefulWidget {
-  List<Transaction> transactions;
+  List<Transactions> transactions;
   TransactionStatusPage(this.transactions);
 
   @override
@@ -23,7 +23,7 @@ class TransactionStatusPage extends StatefulWidget {
 
 
 class TransactionStatusPageState extends TransactionState<TransactionStatusPage> with LoadingFlag{
-  TransactionStatusPageState(List<Transaction> transactions) : super(transactions);
+  TransactionStatusPageState(List<Transactions> transactions) : super(transactions);
 
   TextEditingController response = TextEditingController(text: "");
 

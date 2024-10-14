@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 
 class CapturePage extends StatefulWidget {
-  List<Transaction> transactions;
+  List<Transactions> transactions;
   CapturePage(this.transactions);
 
   @override
@@ -18,7 +18,7 @@ class CapturePage extends StatefulWidget {
 
 
 class CapturePageState extends TransactionState<CapturePage> with LoadingFlag{
-  CapturePageState(List<Transaction> transactions) : super(transactions);
+  CapturePageState(List<Transactions> transactions) : super(transactions);
 
   TextEditingController amount = TextEditingController(text: "");
   TextEditingController response = TextEditingController(text: "");

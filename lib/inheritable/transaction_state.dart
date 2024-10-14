@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../transaction-storage.dart';
 
 abstract class TransactionState<T extends StatefulWidget> extends State<T>{
-  List<Transaction> transactions;
-  Transaction? selectedTxn;
+  List<Transactions> transactions;
+  Transactions? selectedTxn;
 
   TransactionState(this.transactions);
 

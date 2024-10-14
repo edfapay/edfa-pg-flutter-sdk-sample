@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 List<EdfaPgCard> testingCards = EdfaPgTestCards().all();
 
-const primaryColor =  Color(0xff1d6cf3);
+const primaryColor =  Color(0xff06E59F);
 const primaryTextColor =  Colors.black;
 const secondaryTextColor =  Colors.white;
 
@@ -21,6 +21,7 @@ Map<int, Color> swatch = {
   800:primaryColor.withOpacity(0.9),
   900:primaryColor.withOpacity(1),
 };
+
 
 Widget button(String text, VoidCallback action){
   return Padding(
@@ -90,3 +91,17 @@ extension xLoading on Widget{
     );
   }
 }
+
+
+const locales = {
+  "English": Locale('en', 'US'),
+  "العربية": Locale('ar', 'SA'),
+  "Deutsch": Locale('de'),
+  "Русский язык": Locale('ru'),
+  "Français": Locale('fr'),
+  "اُردُو": Locale('ur'),
+  "हिन्दी": Locale('hi'),
+  "Italiano": Locale('it'),
+  "中文": Locale('zh'),
+  "日本語 ": Locale('ja')
+};

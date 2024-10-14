@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Transaction{
+class Transactions{
   String? payerEmail;
   String cardNumber;
 
@@ -16,7 +16,7 @@ class Transaction{
   String  recurringToken = "";
   bool isAuth;
 
-  Transaction({required this.payerEmail, required this.cardNumber, required this.isAuth});
+  Transactions({required this.payerEmail, required this.cardNumber, required this.isAuth});
 
   Map<String, dynamic> toJson(){
     return {
@@ -32,8 +32,8 @@ class Transaction{
     };
   }
 
-  static Transaction fromJson(Map<String, dynamic> json){
-    final ob = Transaction(payerEmail: json["payerEmail"], cardNumber: json["cardNumber"], isAuth: json["isAuth"]);
+  static Transactions fromJson(Map<String, dynamic> json){
+    final ob = Transactions(payerEmail: json["payerEmail"], cardNumber: json["cardNumber"], isAuth: json["isAuth"]);
     ob.txnId = json["txnId"] ?? "";
     ob.orderId = json["orderId"] ?? "";
     ob.recurringToken = json["recurringToken"] ?? "";
@@ -45,7 +45,7 @@ class Transaction{
   }
 
 
-  Transaction fill(IEdfaPgResult result){
+  Transactions fill(IEdfaPgResult result){
     this.txnId = result.transactionId;
     this.orderId = result.orderId;
     this.action = result.action;
@@ -64,23 +64,23 @@ class Transaction{
     pref.setStringList("Transactions", list);
   }
 
-  static Future<List<Transaction>> getAll() async{
+  static Future<List<Transactions>> getAll() async{
     final pref = await SharedPreferences.getInstance();
     List<String> list = pref.getStringList("Transactions") ?? [];
-    return list.map((e) => Transaction.fromJson(jsonDecode(e))).toList();
+    return list.map((e) => Transactions.fromJson(jsonDecode(e))).toList();
   }
 
-  static Future<List<Transaction>> getRecurringSale() async{
+  static Future<List<Transactions>> getRecurringSale() async{
     final l = await getAll();
     return l.where((element) => element.action == EdfaPgAction.SALE).toList();
   }
 
-  static Future<List<Transaction>> getCapture() async{
+  static Future<List<Transactions>> getCapture() async{
     final l = await getAll();
     return l.where((e) => e.action == EdfaPgAction.SALE && e.isAuth).toList();
   }
 
-  static Future<List<Transaction>> getCreditVoid() async{
+  static Future<List<Transactions>> getCreditVoid() async{
     final l = await getAll();
     return l.where((e) => e.action == EdfaPgAction.SALE || e.action == EdfaPgAction.CAPTURE || e.isAuth).toList();
   }

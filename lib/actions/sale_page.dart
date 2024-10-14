@@ -231,7 +231,7 @@ class SalePageState extends State<SalePage> with LoadingFlag{
       saleOption = EdfaPgSaleOption(channelId: channelId.text, recurringInit: true) ;
     }
 
-    final txn = Transaction(cardNumber: card.number ?? "", payerEmail: email.text, isAuth: isAuth);
+    final txn = Transactions(cardNumber: card.number ?? "", payerEmail: email.text, isAuth: isAuth);
     EdfaPgSdk.instance.ADAPTER.SALE.execute(
         order: order,
         card: card,
