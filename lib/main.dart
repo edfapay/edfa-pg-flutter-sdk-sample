@@ -20,8 +20,8 @@ import 'global.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   EdfaPgSdk.instance.config(
-    key: MERCHANT_KEY, // Create a string variable which should be fill by 'Client Key' provided by expresspay.sa
-    password: MERCHANT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by expresspay.sa
+    key: Credentials().MERCHANT_KEY, // Create a string variable which should be fill by 'Client Key' provided by expresspay.sa
+    password: Credentials().MERCHANT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by expresspay.sa
     enableDebug: true
   );
 

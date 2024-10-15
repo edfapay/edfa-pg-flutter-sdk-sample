@@ -15,12 +15,13 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        mavenLocal()
         maven {
             url 'https://jitpack.io'
             content { includeGroup "com.github.edfapay" }
         }
         maven {
-            url uri('/Volumes/Data/Projects/local-maven-repo') // Adjust the path as needed
+            url uri('/Users/kashif/Desktop/AppRack/local-repo') // Adjust the path as needed        }
         }
     }
 }
