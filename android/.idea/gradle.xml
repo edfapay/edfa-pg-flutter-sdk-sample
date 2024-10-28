@@ -8,11 +8,10 @@
         <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.0.17/android" />
-            <option value="$PROJECT_DIR$/../../../Android/edfpay-pg-android-sdk/edfa-pg-sdk" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/edfapg_sdk-0.1.1/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_android-2.3.3/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/../../edfa-pg-flutter-sdk/android" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

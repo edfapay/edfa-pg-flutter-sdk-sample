@@ -1,11 +1,10 @@
 
 import 'dart:io';
-import 'dart:math';
 
-import 'package:edfapg_sample/credentials.dart';
 import 'package:edfapg_sample/actions/capture_page.dart';
 import 'package:edfapg_sample/actions/get_transaction_detail_page.dart';
 import 'package:edfapg_sample/actions/sale_page.dart';
+import 'package:edfapg_sample/credentials.dart';
 import 'package:edfapg_sample/transaction-storage.dart';
 import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +16,8 @@ import 'global.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   EdfaPgSdk.instance.config(
-    key: MERCHANT_KEY, // Create a string variable which should be fill by 'Client Key' provided by expresspay.sa
-    password: MERCHANT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by expresspay.sa
+    key: Credentials().MERCHANT_KEY, // Create a string variable which should be fill by 'Client Key' provided by expresspay.sa
+    password: Credentials().MERCHANT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by expresspay.sa
     enableDebug: true
   );
 
