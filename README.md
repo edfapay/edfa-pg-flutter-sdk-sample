@@ -72,7 +72,7 @@ easily integrate the EdfaPay API Payment Platform for a specific merchant.
 >
 > **Android**
 > 
-> If your project is obfuscated with proguard, please add the rule below to your android project **app/proguard-rules.pro**
+> If your project is obfuscated with proguard, please add the rule below to your project **android/app/proguard-rules.pro**
 > 
 > ```
 > -keep class com.edfapg.sdk.** {
