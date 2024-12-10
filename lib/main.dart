@@ -188,7 +188,7 @@ class ActionsPage extends StatelessWidget{
     EdfaApplePay()
         .setOrder(order)
         .setPayer(payer)
-        .setApplePayMerchantID("merchant.expresspay.darlana")
+        .setApplePayMerchantID(APPLEPAY_MERCHANT_ID)
         .onAuthentication((response){
       print("onAuthentication.response ===> ${response.toString()}");
       alert(context, "Authorized :)");
