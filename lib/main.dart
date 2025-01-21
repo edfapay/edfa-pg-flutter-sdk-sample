@@ -137,23 +137,80 @@ class ActionsPage extends StatelessWidget{
     );
 
     final payer = EdfaPgPayer(
-        firstName: "", lastName: "",
-        address: "", country: "", city: "", zip: "",
-        email: "a2zzuhaib@gmail.com", phone: "+966500409598",
-        ip: "66.249.64.248",
-        // options: EdfaPgPayerOption( // Options
-        //     // middleName: "Muhammad Iqbal",
-        //     // birthdate: DateTime.parse("1987-03-30"),
-        //     // address2: "King Fahad Road", state: "Olaya"
-        // )
+      firstName: "Zohaib",
+      lastName: "Kambrani",
+      address: "Riyadh",
+      country: "SA",
+      city: "Riyadh",
+      zip: "123123",
+      email: "a2zzuhaib@gmail.com",
+      phone: "+966500409598",
+      ip: "171.100.100.123",
+      // options: EdfaPgPayerOption( // Options
+      //     // middleName: "Muhammad Iqbal",
+      //     // birthdate: DateTime.parse("1987-03-30"),
+      //     // address2: "King Fahad Road", state: "Olaya"
+      // )
     );
 
     EdfaCardPay()
         .setOrder(order)
         .setPayer(payer)
+        .setDesignType(DesignType.PAYMENT_DESIGN_2)
+        .setLanguage(EdfaLocale.AR)
         .onTransactionSuccess((response){
           print("onTransactionSuccess.response ===> ${response.toString()}");
           alert(context, "Success :)");
+
+
+    }).onTransactionFailure((response){
+      print("onTransactionFailure.response ===> ${response.toString()}");
+      alert(context, "Failure :(");
+
+    }).onError((error){
+      print("onError.response ===> ${error.toString()}");
+      alert(context, "Error:\n${error}");
+
+    }).initialize(context);
+  }
+
+   saleWithCardDetails() {
+    final order = EdfaPgSaleOrder(
+        id: EdfaPgSdk.instance.HELPER.generateUUID(),
+        description: "Test Order",
+        currency: "SAR",
+        amount: 0.12 //Random().nextInt(9)/10, // will not exceed 0.9
+    );
+
+    final payer = EdfaPgPayer(
+      firstName: "Zohaib",
+      lastName: "Kambrani",
+      address: "Riyadh",
+      country: "SA",
+      city: "Riyadh",
+      zip: "123123",
+      email: "a2zzuhaib@gmail.com",
+      phone: "+966500409598",
+      ip: "171.100.100.123",
+      // options: EdfaPgPayerOption( // Options
+      //     // middleName: "Muhammad Iqbal",
+      //     // birthdate: DateTime.parse("1987-03-30"),
+      //     // address2: "King Fahad Road", state: "Olaya"
+      // )
+    );
+
+
+    // final card = EdfaPgCard(number: "4458271329748293",
+    //     expireMonth: 7,
+    //     expireYear: 2029,
+    //     cvv: "331");//zohaib card
+
+    EdfaCardPay()
+        .setOrder(order)
+        .setPayer(payer)
+        .onTransactionSuccess((response){
+      print("onTransactionSuccess.response ===> ${response.toString()}");
+      alert(context, "Success :)");
 
 
     }).onTransactionFailure((response){
@@ -188,6 +245,7 @@ class ActionsPage extends StatelessWidget{
     EdfaApplePay()
         .setOrder(order)
         .setPayer(payer)
+
         .setApplePayMerchantID("merchant.expresspay.darlana")
         .onAuthentication((response){
       print("onAuthentication.response ===> ${response.toString()}");
@@ -213,3 +271,4 @@ class ActionsPage extends StatelessWidget{
   }
 
 }
+
