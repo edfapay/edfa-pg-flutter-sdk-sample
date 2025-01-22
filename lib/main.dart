@@ -181,7 +181,7 @@ class ActionsPage extends StatelessWidget{
         id: EdfaPgSdk.instance.HELPER.generateUUID(),
         description: "Test Order",
         currency: "SAR",
-        amount: 0.12 //Random().nextInt(9)/10, // will not exceed 0.9
+        amount: 1.0 //Random().nextInt(9)/10, // will not exceed 0.9
     );
 
     final payer = EdfaPgPayer(
@@ -192,7 +192,7 @@ class ActionsPage extends StatelessWidget{
       city: "Riyadh",
       zip: "123123",
       email: "a2zzuhaib@gmail.com",
-      phone: "+966500409598",
+      phone: "966500409598",
       ip: "171.100.100.123",
       options: EdfaPgPayerOption( // Options
           middleName: "Muhammad Iqbal",
