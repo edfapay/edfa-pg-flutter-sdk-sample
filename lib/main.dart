@@ -8,6 +8,7 @@ import 'package:edfapg_sample/actions/capture_page.dart';
 import 'package:edfapg_sample/actions/get_transaction_detail_page.dart';
 import 'package:edfapg_sample/actions/sale_page.dart';
 import 'package:edfapg_sample/transaction-storage.dart';
+import 'package:edfapg_sdk/credentials.dart';
 import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:flutter/material.dart';
 import 'actions/credit_void_page.dart';
@@ -144,7 +145,7 @@ class ActionsPage extends StatelessWidget{
       city: "Riyadh",
       zip: "123123",
       email: "a2zzuhaib@gmail.com",
-      phone: "+966500409598",
+      phone: "966500409598",
       ip: "171.100.100.123",
       // options: EdfaPgPayerOption( // Options
       //     // middleName: "Muhammad Iqbal",
@@ -156,8 +157,8 @@ class ActionsPage extends StatelessWidget{
     EdfaCardPay()
         .setOrder(order)
         .setPayer(payer)
-        .setDesignType(DesignType.PAYMENT_DESIGN_2)
-        .setLanguage(EdfaLocale.AR)
+        .setDesignType(EdfaPayDesignType.one)
+        .setLanguage(EdfaPayLanguage.en)
         .onTransactionSuccess((response){
           print("onTransactionSuccess.response ===> ${response.toString()}");
           alert(context, "Success :)");
