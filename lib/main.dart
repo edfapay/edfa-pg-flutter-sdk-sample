@@ -85,6 +85,7 @@ class ActionsPage extends StatelessWidget{
             button("GET_TRANS_STATUS", transSatus),
             button("GET_TRANS_DETAILS", transDetail),
             button("SALE_WITH_CARD_UI", saleWithCard),
+            button("SALE_WITH_CARD_DETAIL", saleWithCardDetails),
             if(Platform.isIOS)
               button("APPLE_PAY", applePay),
             const Divider(height: 30, thickness: 1, color: Colors.black),
@@ -193,20 +194,22 @@ class ActionsPage extends StatelessWidget{
       email: "a2zzuhaib@gmail.com",
       phone: "+966500409598",
       ip: "171.100.100.123",
-      // options: EdfaPgPayerOption( // Options
-      //     // middleName: "Muhammad Iqbal",
-      //     // birthdate: DateTime.parse("1987-03-30"),
-      //     // address2: "King Fahad Road", state: "Olaya"
-      // )
+      options: EdfaPgPayerOption( // Options
+          middleName: "Muhammad Iqbal",
+          birthdate: DateTime.parse("1987-03-30"),
+          address2: "King Fahad Road", state: "Olaya"
+      )
     );
 
 
-    // final card = EdfaPgCard(number: "4458271329748293",
-    //     expireMonth: 7,
-    //     expireYear: 2029,
-    //     cvv: "331");//zohaib card
+    final card = EdfaPgCard(
+        number: "4458271329748293",
+        expireMonth: 7,
+        expireYear: 2029,
+        cvv: "331"
+    );
 
-    EdfaCardPay()
+    EdfaPayWithCard(card)
         .setOrder(order)
         .setPayer(payer)
         .onTransactionSuccess((response){
