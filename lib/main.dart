@@ -3,12 +3,11 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:edfapg_sample/change-language-page.dart';
-import 'package:edfapg_sample/credentials.dart';
 import 'package:edfapg_sample/actions/capture_page.dart';
 import 'package:edfapg_sample/actions/get_transaction_detail_page.dart';
 import 'package:edfapg_sample/actions/sale_page.dart';
+import 'package:edfapg_sample/credentials.dart';
 import 'package:edfapg_sample/transaction-storage.dart';
-import 'package:edfapg_sdk/credentials.dart';
 import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:flutter/material.dart';
 import 'actions/credit_void_page.dart';
@@ -160,6 +159,7 @@ class ActionsPage extends StatelessWidget{
         .setPayer(payer)
         .setDesignType(EdfaPayDesignType.one)
         .setLanguage(EdfaPayLanguage.en)
+        .setRecurring(true)
         .onTransactionSuccess((response){
           print("onTransactionSuccess.response ===> ${response.toString()}");
           alert(context, "Success :)");
@@ -212,6 +212,7 @@ class ActionsPage extends StatelessWidget{
     EdfaPayWithCard(card)
         .setOrder(order)
         .setPayer(payer)
+        .setRecurring(true)
         .onTransactionSuccess((response){
       print("onTransactionSuccess.response ===> ${response.toString()}");
       alert(context, "Success :)");
