@@ -21,9 +21,9 @@ import 'global.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   EdfaPgSdk.instance.config(
-    key: Credentials().MERCHANT_KEY, // Create a string variable which should be fill by 'Client Key' provided by expresspay.sa
-    password: Credentials().MERCHANT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by expresspay.sa
-    enableDebug: true
+      key: MERCHANT_KEY, // Create a string variable which should be fill by 'Client Key' provided by edfapay.sa
+      password: MERCHANT_PASSWORD, // Create a string variable which should be fill by 'Client Password' provided by edfapay.sa
+      enableDebug: true
   );
 
   runApp(
@@ -160,9 +160,11 @@ class ActionsPage extends StatelessWidget{
         .setPayer(payer)
         .setDesignType(EdfaPayDesignType.one)
         .setLanguage(EdfaPayLanguage.en)
+        .setRecurring(false)
+        .setAuth(false)
         .onTransactionSuccess((response){
-          print("onTransactionSuccess.response ===> ${response.toString()}");
-          alert(context, "Success :)");
+      print("onTransactionSuccess.response ===> ${response.toString()}");
+      alert(context, "Success :)");
 
 
     }).onTransactionFailure((response){
@@ -176,7 +178,7 @@ class ActionsPage extends StatelessWidget{
     }).initialize(context);
   }
 
-   saleWithCardDetails() {
+  saleWithCardDetails() {
     final order = EdfaPgSaleOrder(
         id: EdfaPgSdk.instance.HELPER.generateUUID(),
         description: "Test Order",
@@ -185,20 +187,20 @@ class ActionsPage extends StatelessWidget{
     );
 
     final payer = EdfaPgPayer(
-      firstName: "Zohaib",
-      lastName: "Kambrani",
-      address: "Riyadh",
-      country: "SA",
-      city: "Riyadh",
-      zip: "123123",
-      email: "a2zzuhaib@gmail.com",
-      phone: "966500409598",
-      ip: "171.100.100.123",
-      options: EdfaPgPayerOption( // Options
-          middleName: "Muhammad Iqbal",
-          birthdate: DateTime.parse("1987-03-30"),
-          address2: "King Fahad Road", state: "Olaya"
-      )
+        firstName: "Zohaib",
+        lastName: "Kambrani",
+        address: "Riyadh",
+        country: "SA",
+        city: "Riyadh",
+        zip: "123123",
+        email: "a2zzuhaib@gmail.com",
+        phone: "966500409598",
+        ip: "171.100.100.123",
+        options: EdfaPgPayerOption( // Options
+            middleName: "Muhammad Iqbal",
+            birthdate: DateTime.parse("1987-03-30"),
+            address2: "King Fahad Road", state: "Olaya"
+        )
     );
 
 
@@ -210,6 +212,7 @@ class ActionsPage extends StatelessWidget{
     );
 
     EdfaPayWithCard(card)
+        .setAuth(false)
         .setOrder(order)
         .setPayer(payer)
         .onTransactionSuccess((response){
