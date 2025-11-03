@@ -8,7 +8,6 @@ import 'package:edfapg_sample/actions/capture_page.dart';
 import 'package:edfapg_sample/actions/get_transaction_detail_page.dart';
 import 'package:edfapg_sample/actions/sale_page.dart';
 import 'package:edfapg_sample/transaction-storage.dart';
-import 'package:edfapg_sdk/credentials.dart';
 import 'package:edfapg_sdk/edfapg_sdk.dart';
 import 'package:flutter/material.dart';
 import 'actions/credit_void_page.dart';
