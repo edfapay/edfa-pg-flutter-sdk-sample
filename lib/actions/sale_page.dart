@@ -236,6 +236,7 @@ class SalePageState extends State<SalePage> with LoadingFlag{
         order: order,
         card: card,
         payer: payer,
+        extras: [Extra(type: "SALE", name: "SMS", value: "2.00")],
         saleOption: saleOption,
         isAuth: isAuth,
         onResponse: SaleResponseCallback(

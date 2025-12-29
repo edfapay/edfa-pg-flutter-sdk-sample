@@ -85,6 +85,7 @@ class ActionsPage extends StatelessWidget{
             button("GET_TRANS_DETAILS", transDetail),
             button("SALE_WITH_CARD_UI", saleWithCard),
             button("SALE_WITH_CARD_DETAIL", saleWithCardDetails),
+            button("PAY_WITH_SADAD", payWithSadad),
             if(Platform.isIOS)
               button("APPLE_PAY", applePay),
             const Divider(height: 30, thickness: 1, color: Colors.black),
@@ -157,6 +158,7 @@ class ActionsPage extends StatelessWidget{
     EdfaCardPay()
         .setOrder(order)
         .setPayer(payer)
+        .setExtras([Extra(type: "SALE", name: "SMS", value: "2.00")])
         .setDesignType(EdfaPayDesignType.one)
         .setLanguage(EdfaPayLanguage.en)
         .setRecurring(false)
@@ -175,6 +177,22 @@ class ActionsPage extends StatelessWidget{
       alert(context, "Error:\n${error}");
 
     }).initialize(context);
+  }
+
+  payWithSadad(){
+    EdfaSadadPay()
+        .setOrderId(EdfaPgSdk().HELPER.generateUUID())
+        .setOrderDescription("description")
+        .setOrderAmount(24.0)
+        .setCustomerName("Zohaib")
+        .setMobileNumber("966500409598")
+        .onSuccess((response){
+      print(response.toJson());
+    }).onFailure((errors, exception){
+      print(errors?.errorMessage);
+    }).initialize((errors){
+      print(errors);
+    });
   }
 
   saleWithCardDetails() {
@@ -213,6 +231,7 @@ class ActionsPage extends StatelessWidget{
     EdfaPayWithCard(card)
         .setAuth(false)
         .setOrder(order)
+        .setExtras([Extra(type: "SALE", name: "SMS", value: "2.00")])
         .setPayer(payer)
         .onTransactionSuccess((response){
       print("onTransactionSuccess.response ===> ${response.toString()}");
