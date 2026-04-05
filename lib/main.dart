@@ -181,7 +181,7 @@ class ActionsPage extends StatelessWidget{
 
   payWithSadad(){
     EdfaSadadPay()
-        .setOrderId(EdfaPgSdk().HELPER.generateUUID())
+        .setOrderId(EdfaPgSdk().HELPER.generateUniqueId())
         .setOrderDescription("description")
         .setOrderAmount(24.0)
         .setCustomerName("Zohaib")
@@ -222,7 +222,10 @@ class ActionsPage extends StatelessWidget{
 
 
     final card = EdfaPgCard(
-        number: "4458271329748293",
+        // number: "4111111111111111",
+        // number: "5123450000000008",
+        // number: "4458271329748293",
+        number: "4847832511204054",
         expireMonth: 7,
         expireYear: 2029,
         cvv: "331"

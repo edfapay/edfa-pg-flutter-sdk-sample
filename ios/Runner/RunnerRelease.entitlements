@@ -4,7 +4,9 @@
 <dict>
 	<key>com.apple.developer.in-app-payments</key>
 	<array>
-		<string>merchant..edfapay.Abdulrahim.Company</string>
+		<string>merchant.com.edfapaydarlana</string>
+		<string>merchant.edfapay.Wasltec</string>
+		<string>merchant.woocommerce.edfapay.com</string>
 	</array>
 </dict>
 </plist>

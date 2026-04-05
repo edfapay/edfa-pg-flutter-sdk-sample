@@ -23,5 +23,5 @@ plugins {
 }
 
 include(":app")
-//include(":edfa-pg-sdk")
-//project(":edfa-pg-sdk").projectDir = File("/Volumes/Storage/Projects/Edfapay/Android/edfpay-pg-android-sdk/edfa-pg-sdk")
+include(":edfa-pg-sdk")
+project(":edfa-pg-sdk").projectDir = File("/Volumes/Storage/Projects/Edfapay/Android/edfpay-pg-android-sdk/edfa-pg-sdk")
